@@ -11,3 +11,13 @@ Deno.test("get /", async () => {
 
   assertEquals(result.body, "Hello, world!");
 });
+
+Deno.test("get /Graeme", async () => {
+  const request = new ServerRequest();
+  request.method = "GET";
+  request.url = "/Graeme";
+
+  const result = await server.inject(request);
+
+  assertEquals(result.body, "Hello, Graeme!");
+});
