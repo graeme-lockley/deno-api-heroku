@@ -10,8 +10,6 @@ server.router.get("/", (request) => {
 server.router.get("/{name}", (request) => {
   const name: string = request.params["name"];
 
-  console.log(name);
-
   return `Hello, ${name}!`;
 });
 
