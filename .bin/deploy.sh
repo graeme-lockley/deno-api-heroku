@@ -26,6 +26,10 @@ heroku auth:token
 heroku git:clone -a deno-api-heroku
 
 cd deno-api-heroku
+
+git config --global user.email "graemel@no9.co.za"
+git config --global user.name "Graeme Lockley"
+
 echo "v1.4.6" > runtime.txt
 
 cp ../Procfile .
