@@ -19,7 +19,9 @@ echo "machine git.heroku.com" >> ~/.netrc
 echo "  login $HEROKU_USER" >> ~/.netrc
 echo "  password $HEROKU_PASSWORD" >> ~/.netrc
 
-# heroku login
+# heroku login -i
+
+heroku auth:token
 
 heroku git:clone -a deno-api-heroku
 
