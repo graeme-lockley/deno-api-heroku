@@ -1,6 +1,10 @@
-import { serve } from "https://deno.land/std@0.66.0/http/server.ts";
+import {
+  Application,
+  Context,
+  Router,
+  RouterContext,
+} from "https://deno.land/x/oak/mod.ts";
 import * as Flags from "https://deno.land/std@0.66.0/flags/mod.ts";
-import * as Path from "https://deno.land/std@0.66.0/path/mod.ts";
 
 const DEFAULT_PORT = 8080;
 const argPort = Flags.parse(Deno.args).port;
@@ -11,23 +15,18 @@ if (isNaN(port)) {
   Deno.exit(1);
 }
 
-// const s = serve({ port: port });
-// console.log("http://localhost:" + port);
-
-// for await (const req of s) {
-//   console.log(req);
-//   const url = new URL(`http://localhost:${port}${req.url}`);
-//   console.log(url);
-
-//   req.respond({ body: "Hello World\n" });
-// }
-
-import { Application } from "https://deno.land/x/oak/mod.ts";
-
 const app = new Application();
 
-app.use((ctx) => {
-  ctx.response.body = "Hello World!";
-});
+const router = new Router();
+router
+  .get("/", (ctx: RouterContext) => {
+    ctx.response.body = "Hello World!";
+  })
+  .get("/:name", (ctx: RouterContext) => {
+    ctx.response.body = `Hello ${ctx.params.name}`;
+  });
+
+app.use(router.routes());
+app.use(router.allowedMethods());
 
 await app.listen({ port: port });
