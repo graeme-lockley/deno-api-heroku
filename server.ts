@@ -23,7 +23,7 @@ router
     ctx.response.body = greet();
   })
   .get("/:name", (ctx: RouterContext) => {
-    ctx.response.body = `Hello ${greet(ctx.params.name)}`;
+    ctx.response.body = greet(ctx.params.name);
   });
 
 app.use(router.routes());
