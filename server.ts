@@ -11,13 +11,23 @@ if (isNaN(port)) {
   Deno.exit(1);
 }
 
-const s = serve({ port: port });
-console.log("http://localhost:" + port);
+// const s = serve({ port: port });
+// console.log("http://localhost:" + port);
 
-for await (const req of s) {
-  console.log(req);
-  const url = new URL(`http://localhost:${port}${req.url}`);
-  console.log(url);
+// for await (const req of s) {
+//   console.log(req);
+//   const url = new URL(`http://localhost:${port}${req.url}`);
+//   console.log(url);
 
-  req.respond({ body: "Hello World\n" });
-}
+//   req.respond({ body: "Hello World\n" });
+// }
+
+import { Application } from "https://deno.land/x/oak/mod.ts";
+
+const app = new Application();
+
+app.use((ctx) => {
+  ctx.response.body = "Hello World!";
+});
+
+await app.listen({ port: port });
