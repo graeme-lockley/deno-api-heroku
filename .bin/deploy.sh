@@ -31,7 +31,7 @@ git config user.name "Graeme Lockley"
 echo "v1.5.0" > runtime.txt
 
 cp ../Procfile .
-cp ../mod.ts .
+cp ../greeter.ts .
 cp ../server.ts .
 
 git add .
