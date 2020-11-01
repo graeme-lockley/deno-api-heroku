@@ -10,3 +10,5 @@ ENV PATH=${DENO_INSTALL}/bin:${PATH} \
 
 RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
    && apt-get -y install --no-install-recommends entr
+
+RUN curl https://cli-assets.heroku.com/install-ubuntu.sh | sh
