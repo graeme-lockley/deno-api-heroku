@@ -21,7 +21,7 @@ echo "  password $HEROKU_PASSWORD" >> ~/.netrc
 
 # heroku login
 
-
+heroku git:clone -a deno-api-heroku
 
 cd deno-api-heroku
 echo "v1.4.6" > runtime.txt
