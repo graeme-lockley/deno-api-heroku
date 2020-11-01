@@ -23,4 +23,7 @@ jobs:
       - name: Test deno-api-heroku
         run: .bin/test.sh
       - name: Deploy to Heroku
+        env:
+          HEROKU_USER: ${{ secrets.HEROKU_USER }}
+          HEROKU_PASSWORD: ${{ secrets.HEROKU_PASSWORD }}
         run: .bin/deploy.sh

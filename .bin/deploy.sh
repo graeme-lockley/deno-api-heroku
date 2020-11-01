@@ -1,7 +1,16 @@
 #!/bin/bash
 
-HEORKU_USER=graemel@no9.co.za
-HEROKU_PASSWORD=0ed8ec8c-859a-4181-bfc1-6f3e8c8d7e86
+if [ "$HEROKU_USER" == "" ]
+then
+    echo "error: HEROKU_USER not set"
+    exit 1
+fi
+
+if [ "$HEROKU_PASSWORD" == "" ]
+then
+    echo "error: HEROKU_PASSWORD not set"
+    exit 1
+fi
 
 echo "machine api.heroku.com" > ~/.netrc
 echo "  login $HEROKU_USER" >> ~/.netrc
@@ -12,7 +21,7 @@ echo "  password $HEROKU_PASSWORD" >> ~/.netrc
 
 # heroku login
 
-heroku git:clone -a deno-api-heroku
+
 
 cd deno-api-heroku
 echo "v1.4.6" > runtime.txt
