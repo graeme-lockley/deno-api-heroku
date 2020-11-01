@@ -1,16 +1,17 @@
-import pogo from "https://deno.land/x/pogo@v0.5.1/main.ts";
+import * as pogo from "https://deno.land/x/pogo@v0.5.1/main.ts";
 
-export const server = pogo.server({ port: 3000 });
+export const createServer = (port: number): pogo.Server => {
+  const server = pogo.server({ port });
 
-server.router.get("/", (request) => {
-  return "Hello, world!";
-});
+  server.router.get("/", () => {
+    return "Hello, world!";
+  });
 
-// server.start();
-server.router.get("/{name}", (request) => {
-  const name: string = request.params["name"];
+  server.router.get("/{name}", (request: pogo.Request) => {
+    const name: string = request.params["name"];
 
-  return `Hello, ${name}!`;
-});
+    return `Hello, ${name}!`;
+  });
 
-// server.start();
+  return server;
+};
