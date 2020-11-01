@@ -28,7 +28,7 @@ cd deno-api-heroku
 git config user.email "graeme.lockley@gmail.com"
 git config user.name "Graeme Lockley"
 
-echo "v1.4.6" > runtime.txt
+echo "v1.5.0" > runtime.txt
 
 cp ../Procfile .
 cp ../mod.ts .
