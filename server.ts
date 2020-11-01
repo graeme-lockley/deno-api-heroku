@@ -14,5 +14,5 @@ const s = serve({ port: port });
 console.log("http://localhost:" + port);
 
 for await (const req of s) {
-  req.respond({ body: "Hello World!!\n" });
+  req.respond({ body: "Hello World\n" });
 }
