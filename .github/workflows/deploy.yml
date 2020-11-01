@@ -1,6 +1,10 @@
 name: Deploy deno-api-heroku to Heroku
 
 on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
   workflow_dispatch:
 
 jobs:
@@ -27,7 +31,7 @@ jobs:
     runs-on: ubuntu-latest
 
     needs: test
-    
+
     steps:
       - name: Checkout
         uses: actions/checkout@v2
