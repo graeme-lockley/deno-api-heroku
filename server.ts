@@ -6,19 +6,22 @@ import {
 import { greet } from "./greeter.ts";
 import * as Flags from "https://deno.land/std@0.66.0/flags/mod.ts";
 
-const DEFAULT_PORT = 8080;
-const argPort = Flags.parse(Deno.args).port;
-const port = argPort ? Number(argPort) : DEFAULT_PORT;
+const port = () => {
+  const DEFAULT_PORT = 8080;
+  const argPort = Flags.parse(Deno.args).port;
+  const port = argPort ? Number(argPort) : DEFAULT_PORT;
 
-if (isNaN(port)) {
-  console.error("Port is not a number.");
-  Deno.exit(1);
-}
+  if (isNaN(port)) {
+    console.error("Port is not a number.");
+    Deno.exit(1);
+  }
+
+  return port;
+};
 
 const app = new Application();
 
-const router = new Router();
-router
+const router = new Router()
   .get("/", (ctx: RouterContext) => {
     ctx.response.body = greet();
   })
@@ -29,4 +32,4 @@ router
 app.use(router.routes());
 app.use(router.allowedMethods());
 
-await app.listen({ port: port });
+await app.listen({ port: port() });
